@@ -14,6 +14,8 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
+from src.components.model_trainer import model_trainer_config, model_trainer
+
 #defining where to save the train, test and file
 
 @dataclass
@@ -60,4 +62,9 @@ if __name__ == "__main__":
     train_data,test_data = obj.initiate_data_ingestion()
 
     data_transformation = DataTransformation()
-    data_transformation.initiate_data_transformation(train_data,test_data)
+    train_array,test_array,*othervalues = data_transformation.initiate_data_transformation(train_data,test_data)
+
+    modeltrainer=model_trainer()
+    print(modeltrainer.intiate_model_trainer(train_array,test_array))
+
+
