@@ -1,5 +1,6 @@
 #A utils file in a Python project serves as a central location for storing utility functions and
-# code that can be reused across different parts of the project. The purpose of a utils file is to promote code reusability, maintainability, and organization within a Python project.
+# code that can be reused across different parts of the project. 
+# The purpose of a utils file is to promote code reusability, maintainability, and organization within a Python project.
 
 
 import os,sys
@@ -21,8 +22,8 @@ def save_object(file_path, obj):
         with open(file_path,"wb") as file_obj:
             dill.dump(obj, file_obj)
 
-    except:
-        raise CustomException(e,sys)
+    except Exception as e:
+        raise CustomException(e, sys)
     
 
 def evaluate_models(X_train,y_train,X_test,y_test,models,param):
@@ -55,5 +56,15 @@ def evaluate_models(X_train,y_train,X_test,y_test,models,param):
 
     except Exception as e:
         raise CustomException(e, sys)
+    
+#load obj is used to load the pkl files
+def load_object(file_path):
+    try:
+        with open(file_path,"rb") as file_obj:
+            return dill.load(file_obj)
+        
+    except Exception as e:
+        raise CustomException(e,sys)
+
 
 
